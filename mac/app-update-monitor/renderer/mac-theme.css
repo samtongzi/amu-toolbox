@@ -1,0 +1,144 @@
+/* Preserve glass around the workspace while giving text a stable light surface. */
+body.mac {
+  --ink: #253047;
+  --muted: #49566c;
+  --muted-dark: #3e4c63;
+  --surface: rgb(255 255 255 / 88%);
+  --surface-soft: #f0f3fa;
+  --line: #d5dce8;
+  --line-strong: #bac5d7;
+  --blue: #245cb8;
+  --blue-dark: #1c4894;
+  --green: #216c3b;
+  --amber: #875300;
+  --red: #ac302b;
+  --green-soft: #eaf5ee;
+  --amber-soft: #fff2dc;
+  --red-soft: #fcecea;
+  background: linear-gradient(130deg, #eaf0fbe6, #f0edf9e6);
+}
+body.mac .command-header { background: #f8faffeb; border-color: #c9d3e3; }
+body.mac :is(.workspace, .log-panel, .settings-panel) { border-color: #c9d3e3; }
+body.mac .system-readout { background: #ffffffd9; border-color: #cbd5e5; font-size: 12px; }
+body.mac :is(.brand-block p, .readout-label, .track-kicker, .status-pill,
+  .muted, .save-state, th, .notice span:last-child, .track-actions,
+  .app-id, .version-text, .source-text, .log-list, .field-row small,
+  .number-input span, .ignored-copy small, .ignored-empty) { font-size: 12px; }
+body.mac th { background: #edf1f8; color: #3e4c63; }
+body.mac .app-id { font-size: 11px; color: #49566c; }
+body.mac .button-primary { background: #245cb8; border-color: #1c4894; }
+body.mac .button-primary:hover:not(:disabled) { background: #1c4894; }
+body.mac .button-secondary { background: #fff; border-color: #bac5d7; }
+body.mac :is(.button, .text-button):disabled {
+  opacity: 1;
+  color: #626d80;
+  background: #e2e6ee;
+  box-shadow: none;
+}
+body.mac .row-action { background: #fff; border-color: #bac5d7; }
+body.mac .row-action:hover:not(:disabled) { background: #edf3fe; }
+body.mac .row-action:disabled { color: #626d80; background: #e2e6ee; }
+body.mac .count-badge { color: #3c5685; background: #e4ebf9; }
+body.mac .switch { background: #778398; }
+body.mac .switch:checked { background: #245cb8; }
+body.mac .ignored-list { background: #edf1f8; }
+body.mac :is(button, input, select, [tabindex]):focus-visible { outline-color: #245cb8; }
+body.mac .toast { background: #26314ef5; }
+body.mac .toast.is-error { background: #9c302bf5; }
+
+@media (prefers-reduced-transparency: reduce) {
+  body.mac { background: #eff2f9; }
+  body.mac :is(.command-header, .workspace, .log-panel, .settings-panel) {
+    background: #f8faff;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}
+
+.appearance-control { display: none; }
+body.mac .appearance-control { display: flex; }
+html[data-theme="dark"] body.mac {
+  color-scheme: dark;
+  --ink: #f0f3fa;
+  --muted: #bec9dc;
+  --muted-dark: #d3dcec;
+  --surface: rgb(36 46 64 / 94%);
+  --surface-solid: #29364b;
+  --surface-soft: #2b394f;
+  --line: #48556e;
+  --line-strong: #63738e;
+  --blue: #a7c8ff;
+  --blue-dark: #c7ddff;
+  --blue-soft: #354c70;
+  --green: #94dfb0;
+  --amber: #f4ce87;
+  --red: #ffb1aa;
+  --green-soft: #253f36;
+  --amber-soft: #473c28;
+  --red-soft: #4c313a;
+  background: linear-gradient(130deg, #172132f5, #262139f5);
+}
+html[data-theme="dark"] body.mac :is(.command-header, .workspace, .log-panel, .settings-panel) { border-color: #48556e; }
+html[data-theme="dark"] body.mac .command-header { background: #242e40f0; }
+html[data-theme="dark"] body.mac .system-readout { background: #29364b; border-color: #52617c; }
+html[data-theme="dark"] body.mac :is(.section-toolbar, .panel-heading) { background: linear-gradient(110deg, #ffffff06, transparent); }
+html[data-theme="dark"] body.mac th { background: #2a374d; color: #d3dcec; }
+html[data-theme="dark"] body.mac .app-id { color: var(--muted); }
+html[data-theme="dark"] body.mac .button-primary { background: #a7c8ff; color: #172842; border-color: #bcd5ff; }
+html[data-theme="dark"] body.mac .button-primary:hover:not(:disabled) { background: #c7ddff; }
+html[data-theme="dark"] body.mac .button-secondary { background: #35435a; color: var(--ink); border-color: #63738e; }
+html[data-theme="dark"] body.mac .button-secondary:hover:not(:disabled) { background: #43536e; }
+html[data-theme="dark"] body.mac :is(.button, .text-button, .row-action):disabled { color: #a9b5ca; background: #354055; }
+html[data-theme="dark"] body.mac .row-action { background: #35435a; border-color: #63738e; }
+html[data-theme="dark"] body.mac .row-action:hover:not(:disabled) { background: #43536e; }
+html[data-theme="dark"] body.mac .count-badge { color: #c0d5fb; background: #354c70; }
+html[data-theme="dark"] body.mac .notice { border-color: #52617c; }
+html[data-theme="dark"] body.mac .execution-track { background: linear-gradient(115deg, #2e4564, #3e355a); border-color: #52617c; }
+html[data-theme="dark"] body.mac .log-list { background: #ffffff03; }
+html[data-theme="dark"] body.mac .number-input span { background: #35435a; }
+html[data-theme="dark"] body.mac .switch:checked { background: #7cafef; }
+html[data-theme="dark"] body.mac .ignored-list { background: #2a374d; }
+html[data-theme="dark"] body.mac :is(button, input, select, [tabindex]):focus-visible { outline-color: #a7c8ff; }
+html[data-theme="dark"] body.mac .toast { background: #e4e8f4f5; color: #26314b; }
+html[data-theme="dark"] body.mac .toast.is-error { background: #ffdee3f5; color: #742737; }
+@media (prefers-reduced-transparency: reduce) {
+  html[data-theme="dark"] body.mac { background: #1c2537; }
+  html[data-theme="dark"] body.mac :is(.command-header, .workspace, .log-panel, .settings-panel) { background: #242e40; }
+}
+
+/* Compact macOS toolbar and an app-focused update list. */
+body.mac { background: linear-gradient(130deg, #eef3f75c, #edf0f64d); }
+body.mac .app-shell { padding: 46px 22px 24px; }
+body.mac .command-header { position: static; min-height: 70px; padding: 12px 18px; background: #ffffff8c; border-color: #ffffffd9; border-radius: 24px; box-shadow: inset 0 1px 0 #fff, 0 4px 18px #253b5010; -webkit-app-region: drag; }
+body.mac .command-header :is(button,input,select) { -webkit-app-region: no-drag; }
+body.mac :is(.workspace,.log-panel,.settings-panel) { background: #ffffffcf; border-color: #ffffffd9; border-radius: 24px; box-shadow: inset 0 1px 0 #fff, 0 5px 20px #253b5010; }
+body.mac .button { border-radius: 18px; }
+body.mac .button-primary { background: #0769dc; border-color: #075bbc; }
+body.mac .button-secondary { background: #ffffffb8; border-color: #c1ccdc; }
+body.mac .system-readout { background: transparent; border: 0; }
+body.mac .table-frame { max-height: 420px; min-height: 240px; }
+body.mac th { background: #eef3f9ed; }
+body.mac td { padding-block: 15px; }
+body.mac .installed-app-icon { width: 44px; height: 44px; flex: none; object-fit: contain; }
+body.mac .app-monogram { width: 44px; height: 44px; }
+body.mac .app-id { font-family: inherit; font-size: 12px; }
+body.mac .source-text { font-family: inherit; }
+body.mac .operation-column { width: 116px; }
+body.mac .row-action { border-radius: 14px; padding: 7px 13px; }
+body.mac th:nth-child(2) { width: 29%; }
+body.mac th:nth-child(3), body.mac th:nth-child(4) { width: 13%; }
+body.mac th:nth-child(5) { width: 11%; }
+body.mac th:nth-child(6) { width: 17%; }
+html[data-theme="dark"] body.mac { background: linear-gradient(130deg, #18233485, #1e28387a); }
+html[data-theme="dark"] body.mac :is(.command-header,.workspace,.log-panel,.settings-panel) { background: #2b384bd1; border-color: #ffffff26; box-shadow: inset 0 1px 0 #ffffff24, 0 5px 20px #0000001a; }
+html[data-theme="dark"] body.mac .system-readout { background: transparent; border: 0; }
+html[data-theme="dark"] body.mac .button-primary { background: #8cc2ff; color: #102742; border-color: #acd2ff; }
+html[data-theme="dark"] body.mac .button-secondary { background: #dceaff21; border-color: #ffffff3d; }
+html[data-theme="dark"] body.mac th { background: #304155ed; }
+html[data-theme="dark"] body.mac .row-action { background: #dceaff21; border-color: #ffffff3d; }
+@media (prefers-reduced-transparency: reduce) {
+  body.mac { background: #eef2f8; }
+  body.mac :is(.command-header,.workspace,.log-panel,.settings-panel) { background: #f8faff; backdrop-filter: none; }
+  html[data-theme="dark"] body.mac { background: #202d3e; }
+  html[data-theme="dark"] body.mac :is(.command-header,.workspace,.log-panel,.settings-panel) { background: #2a394b; }
+}

@@ -1,0 +1,252 @@
+/* Mac glass surfaces need their own readable text and surface palette. */
+body.mac {
+  color-scheme: light;
+  --ink: #253047;
+  --muted: #49566c;
+  --accent: #5141ad;
+  --border: #c9d1e1;
+  --surface: rgb(255 255 255 / 88%);
+  color: var(--ink);
+  background: linear-gradient(120deg, #eff3fae6, #f5f5fbe6 62%, #eceaf7e6);
+}
+
+body.mac .sidebar {
+  overflow-y: auto;
+  background: linear-gradient(120deg, #f5f7fcbf, #e9edf7a6);
+}
+body.mac .sidebar::after { background: var(--border); }
+body.mac .sidebar-bottom { border-color: var(--border); }
+body.mac .nav-item { color: #3e4c65; font-weight: 550; }
+body.mac .nav-item.active {
+  color: var(--accent);
+  background: #fff;
+  box-shadow: inset 0 0 0 1px #d4ceef, 0 3px 12px #5141ad0a;
+}
+body.mac .nav-item:hover:not(.active) { background: #ffffffc9; }
+body.mac .nav-item span { opacity: 1; font-size: 12px; }
+body.mac .brand span { color: var(--muted); font-size: 10px; letter-spacing: 1.4px; }
+
+body.mac :is(.nav-label, .sidebar-note strong, .sidebar-note p,
+  .sidebar-bottom button, .sidebar-bottom > span, .eyebrow, .hero p,
+  .hero-caption, .section-heading p, .category-label, .card-description,
+  .card-meta, .store-footer, .page-intro p, .library-item p, .job-info p,
+  .job-state, .about-card > p, .about-info p, .detail-header p,
+  .feature-list, .detail-note, .detail-size, .loading, .coffee-kicker,
+  .coffee-intro, .qr-hint, .qr-hint > span, .coffee-thanks,
+  .support-zoom > p) {
+  color: var(--muted);
+  font-size: 12px;
+}
+body.mac :is(.card-description, .page-intro p, .about-info p,
+  .detail-header p, .feature-list, .detail-note) { font-size: 13px; line-height: 1.8; }
+body.mac :is(.hero h2 span, .page-intro h2, .about-card h2,
+  .about-info strong, .coffee-card h2, .support-zoom h2, .payment-label h3) { color: #35435c; }
+body.mac .about-info strong { font-size: 13px; }
+body.mac .hero-caption { letter-spacing: .3px; }
+body.mac .store-footer { flex-wrap: wrap; gap: 12px 24px; }
+body.mac .card-meta { flex-wrap: wrap; gap: 5px 10px; }
+body.mac .sidebar-note strong { font-weight: 600; }
+
+body.mac .search {
+  color: var(--muted);
+  background: #fffffff0;
+  border-color: var(--border);
+}
+body.mac .search input { color: var(--ink); font-size: 13px; }
+body.mac .search input::placeholder { color: var(--muted); opacity: 1; }
+body.mac .search:focus-within { border-color: var(--accent); box-shadow: 0 0 0 3px #5141ad1a; }
+body.mac :is(button, a, input):focus-visible { outline-color: var(--accent); }
+
+body.mac .hero {
+  background: radial-gradient(ellipse at 87% 74%, #d5eaf27a, transparent 48%),
+    linear-gradient(112deg, #faf9fff2, #ebe7faf2 57%, #e9edf9ed);
+  border-color: #d4d7e8;
+}
+body.mac .pill { color: #554773; font-size: 12px; background: #ffffffe6; border-color: #d7d0e8; }
+body.mac :is(.app-card, .library-item, .job, .about-card, .coffee-card) {
+  background: var(--surface);
+  border-color: var(--border);
+  box-shadow: 0 6px 22px #34456509, inset 0 1px 0 #fff;
+}
+body.mac .page-intro { background: linear-gradient(120deg, #fffffff0, #eeedf9e6); border-color: var(--border); }
+body.mac .filters { background: #e6eaf4; border-color: #d0d7e5; }
+body.mac .filters button { color: #49566c; font-size: 12px; }
+body.mac .filters .active { color: var(--accent); font-weight: 600; }
+
+body.mac .primary { background: #5b49bd; color: #fff; font-weight: 600; }
+body.mac .primary:hover:not(:disabled) { background: #493798; }
+body.mac :is(.hero-button, .card-actions .primary, .secondary, .text-button) { font-size: 12px; }
+body.mac .text-button { color: var(--accent); font-weight: 550; }
+body.mac .text-button:hover:not(:disabled) { color: #392b85; text-decoration: underline; }
+body.mac .secondary { color: #493b88; background: #eeebfa; border-color: #cec6e9; }
+body.mac .secondary:hover:not(:disabled) { background: #e3ddf7; }
+body.mac .danger, body.mac .job-state.failed, body.mac .job-error { color: #a13043; }
+body.mac .installed-label { color: #216b4e !important; }
+body.mac .job-state.completed { color: #216b4e; }
+body.mac .action-progress { color: #5141ad; font-size: 12px; }
+body.mac .inline-notice { color: #823e29; font-size: 12px; background: #fff0e8; }
+body.mac button:disabled {
+  opacity: 1;
+  color: #626d80;
+  background: #e2e6ee;
+  box-shadow: none;
+}
+body.mac .empty { color: var(--muted); background: #ffffffc9; border-color: #aeb9ce; }
+body.mac .empty strong { color: #35435c; font-weight: 600; }
+body.mac .empty-icon { color: #6352ac; }
+
+body.mac dialog { background: #f8f9fd; border-color: #c8d0df; }
+body.mac .detail-header { background: linear-gradient(135deg, #eeebfa, #eaf1f9); }
+body.mac .detail-close { background: #fff; color: #455269; border: 1px solid #c9d1e1; }
+body.mac .feature-list li::before { color: #5141ad; }
+body.mac :is(.detail-bottom, .about-info) { border-color: var(--border); }
+body.mac .version-chip { color: #534572; font-size: 12px; border-color: #d3cce5; }
+body.mac .payment-card { background: #fff; border-color: var(--border); }
+body.mac .qr-button:hover .qr-hint { color: var(--accent); }
+body.mac .support-zoom { background: #f8f9fd; }
+body.mac .toast-message { background: #302c50f5; }
+body.mac .toast-message.error { background: #813745f5; }
+
+@media (prefers-reduced-transparency: reduce) {
+  body.mac { background: #eff2f9; }
+  body.mac .sidebar { background: #e9edf7; }
+  body.mac :is(.app-card, .library-item, .job, .about-card, .coffee-card, .empty) { background: #fff; }
+  body.mac .hero { background: #efedf9; }
+  body.mac dialog::backdrop { backdrop-filter: none; }
+}
+
+.appearance-control { display: none; }
+body.mac .appearance-control {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 8px;
+  margin: 0 10px 14px;
+  color: var(--muted);
+  font-size: 12px;
+}
+body.mac .appearance-control select {
+  min-width: 0;
+  width: 100%;
+  font: inherit;
+  color: var(--ink);
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  padding: 6px;
+  -webkit-app-region: no-drag;
+}
+body.mac #appearanceStatus { grid-column: 1 / -1; min-height: 0; font-size: 11px; }
+body.mac #appearanceStatus:empty { display: none; }
+body.mac .appearance-control select:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+html[data-theme="dark"] body.mac {
+  color-scheme: dark;
+  --ink: #f0f3fa;
+  --muted: #bec9dc;
+  --accent: #c1b4ff;
+  --border: #48556e;
+  --surface: rgb(36 46 64 / 94%);
+  background: linear-gradient(120deg, #172132f5, #222338f5 62%, #24213af5);
+}
+html[data-theme="dark"] body.mac .sidebar { background: linear-gradient(120deg, #1c2738e6, #242b40d9); }
+html[data-theme="dark"] body.mac .nav-item { color: #d0d9e9; }
+html[data-theme="dark"] body.mac .nav-item.active { background: #3c355d; color: #e4ddff; box-shadow: inset 0 0 0 1px #72649b; }
+html[data-theme="dark"] body.mac .nav-item:hover:not(.active) { background: #344158; }
+html[data-theme="dark"] body.mac :is(.hero h2 span, .page-intro h2, .about-card h2, .about-info strong,
+  .coffee-card h2, .support-zoom h2, .payment-label h3, .empty strong) { color: #e2e9f6; }
+html[data-theme="dark"] body.mac .search { background: #253147; }
+html[data-theme="dark"] body.mac .hero {
+  background: radial-gradient(ellipse at 87% 74%, #32546380, transparent 48%),
+    linear-gradient(112deg, #2a324af5, #35304ff5 57%, #283c4df5);
+  border-color: #52617c;
+}
+html[data-theme="dark"] body.mac .pill { color: #e1d8fa; background: #3c3554; border-color: #726385; }
+html[data-theme="dark"] body.mac .page-intro { background: linear-gradient(120deg, #273347, #322f47); }
+html[data-theme="dark"] body.mac .filters { background: #1d293b; border-color: #48556e; }
+html[data-theme="dark"] body.mac .filters button { color: #bec9dc; }
+html[data-theme="dark"] body.mac .filters .active { background: #454064; color: #ece5ff; }
+html[data-theme="dark"] body.mac .primary { background: #c1b4ff; color: #211739; box-shadow: none; }
+html[data-theme="dark"] body.mac .primary:hover:not(:disabled) { background: #d4caff; }
+html[data-theme="dark"] body.mac .text-button:hover:not(:disabled) { color: #e2d9ff; }
+html[data-theme="dark"] body.mac .secondary { color: #e2d9ff; background: #3d3656; border-color: #756791; }
+html[data-theme="dark"] body.mac .secondary:hover:not(:disabled) { background: #514569; }
+html[data-theme="dark"] body.mac :is(.danger, .job-state.failed, .job-error) { color: #ffacb8; }
+html[data-theme="dark"] body.mac .installed-label { color: #8edab7 !important; }
+html[data-theme="dark"] body.mac .job-state.completed { color: #8edab7; }
+html[data-theme="dark"] body.mac .action-progress { color: var(--accent); }
+html[data-theme="dark"] body.mac .inline-notice { color: #ffd0a9; background: #483626; }
+html[data-theme="dark"] body.mac button:disabled { color: #a9b5ca; background: #354055; }
+html[data-theme="dark"] body.mac .empty { background: #243044e6; border-color: #64748f; }
+html[data-theme="dark"] body.mac .empty-icon { color: #c1b4ff; }
+html[data-theme="dark"] body.mac dialog { background: #222d40; border-color: #596882; }
+html[data-theme="dark"] body.mac dialog::backdrop { background: #050b18a6; }
+html[data-theme="dark"] body.mac .detail-header { background: linear-gradient(135deg, #38314f, #263d4e); }
+html[data-theme="dark"] body.mac .detail-close { background: #3a475d; color: #e2e9f6; border-color: #65748d; }
+html[data-theme="dark"] body.mac .feature-list li::before { color: #c1b4ff; }
+html[data-theme="dark"] body.mac .version-chip { color: #e0d4ff; background: #3d3555; border-color: #716087; }
+html[data-theme="dark"] body.mac .payment-card { background: #2b364a; }
+html[data-theme="dark"] body.mac .support-zoom { background: #222d40; }
+html[data-theme="dark"] body.mac .appearance-control select { background: #2b384f; }
+html[data-theme="dark"] body.mac .toast-message { background: #e4e8f4f5; color: #26314b; border-color: #fff; }
+html[data-theme="dark"] body.mac .toast-message.error { background: #ffdee3f5; color: #742737; }
+html[data-theme="dark"] body.mac .job progress::-webkit-progress-bar { background: #47536c; }
+html[data-theme="dark"] body.mac main { scrollbar-color: #718099 transparent; }
+
+@media (prefers-reduced-transparency: reduce) {
+  html[data-theme="dark"] body.mac { background: #1c2537; }
+  html[data-theme="dark"] body.mac .sidebar { background: #202b3e; }
+  html[data-theme="dark"] body.mac :is(.app-card, .library-item, .job, .about-card, .coffee-card, .empty) { background: #242e40; }
+  html[data-theme="dark"] body.mac .hero { background: #30364e; }
+}
+
+/* Native-material layout: glass belongs to navigation and controls; content stays readable. */
+body.mac { --accent: #075dcc; --ink: #1d2737; --muted: #465469; background: linear-gradient(130deg, #eef3f75c, #edf0f64d); }
+body.mac .sidebar { top: 12px; bottom: 12px; left: 12px; width: 198px; border-radius: 24px; padding-top: 56px; background: #ffffff61; border: 1px solid #ffffffc9; backdrop-filter: blur(32px) saturate(160%); box-shadow: inset 0 1px 0 #fff, 0 8px 24px #2238500a; }
+body.mac .sidebar::after { display: none; }
+body.mac .nav-item { border-radius: 12px; }
+body.mac .nav-item.active { color: #0b5bbe; background: #ffffffc9; box-shadow: inset 0 1px 0 #fff, 0 2px 6px #2238500c; }
+body.mac .hero { background: linear-gradient(125deg, #ffffffb8, #e3eff8ad); border-radius: 26px; border-color: #fff; }
+body.mac :is(.app-card, .library-item, .job, .about-card, .coffee-card) { background: #ffffffc9; border-color: #ffffffed; border-radius: 22px; box-shadow: inset 0 1px 0 #fff, 0 5px 18px #2238500a; }
+body.mac .primary { background: #0769dc; color: #fff; border-radius: 18px; box-shadow: inset 0 1px 0 #ffffff42, 0 2px 5px #0060ca24; }
+body.mac .primary:hover:not(:disabled) { background: #075bbc; }
+body.mac .card-actions .primary { border-radius: 18px; padding: 9px 20px; }
+body.mac :is(.search, .filters, .appearance-control select) { border-radius: 14px; background: #ffffffa6; }
+body.mac .filters button { border-radius: 10px; }
+body.mac .filters .active { color: #075dcc; }
+body.mac .pill { color: #3c5877; }
+body.mac .text-button:hover:not(:disabled) { color: #074d9d; }
+body.mac dialog { border-radius: 28px; background: #f5f8fdeb; backdrop-filter: blur(36px) saturate(150%); }
+body.mac .detail-header { background: #e8f1f99c; }
+html[data-theme="dark"] body.mac { --accent: #acd2ff; --ink: #f2f5fa; --muted: #c0cbda; background: linear-gradient(130deg, #18233485, #1e28387a); }
+html[data-theme="dark"] body.mac .sidebar { background: #29384a8c; border-color: #ffffff26; box-shadow: inset 0 1px 0 #ffffff2b, 0 8px 26px #0000001a; }
+html[data-theme="dark"] body.mac .nav-item.active { color: #f2f6ff; background: #dceaff26; box-shadow: inset 0 1px 0 #ffffff2b, 0 2px 6px #00000014; }
+html[data-theme="dark"] body.mac .hero { background: linear-gradient(125deg, #34445ac9, #294350ad); border-color: #ffffff2b; box-shadow: inset 0 1px 0 #ffffff24; }
+html[data-theme="dark"] body.mac :is(.app-card, .library-item, .job, .about-card, .coffee-card) { background: #2b384bc9; border-color: #ffffff24; box-shadow: inset 0 1px 0 #ffffff1a, 0 5px 18px #00000012; }
+html[data-theme="dark"] body.mac .primary { background: #8cc2ff; color: #102742; border-radius: 18px; }
+html[data-theme="dark"] body.mac .primary:hover:not(:disabled) { background: #bbdaff; }
+html[data-theme="dark"] body.mac :is(.search, .filters, .appearance-control select) { background: #334358ad; border-color: #ffffff2e; }
+html[data-theme="dark"] body.mac .filters .active { background: #526b8780; color: #e2efff; }
+html[data-theme="dark"] body.mac .pill { color: #dae8f7; background: #344b6099; border-color: #ffffff2e; }
+html[data-theme="dark"] body.mac .text-button:hover:not(:disabled) { color: #dfedff; }
+html[data-theme="dark"] body.mac dialog { background: #263448ed; border-color: #ffffff30; }
+html[data-theme="dark"] body.mac .detail-header { background: #30465ba6; }
+@media (max-width: 1030px) { body.mac .sidebar { width: 174px; left: 6px; } }
+@media (prefers-reduced-transparency: reduce) {
+  body.mac, body.mac .sidebar { background: #eef2f8; backdrop-filter: none; }
+  body.mac :is(.app-card, .library-item, .job, .about-card, .coffee-card, dialog, .hero) { background: #f8faff; backdrop-filter: none; }
+  html[data-theme="dark"] body.mac, html[data-theme="dark"] body.mac .sidebar { background: #202d3e; }
+  html[data-theme="dark"] body.mac :is(.app-card, .library-item, .job, .about-card, .coffee-card, dialog, .hero) { background: #2a394b; }
+}
+
+/* A dedicated titlebar gives the traffic lights an even, uninterrupted surface. */
+body.mac .titlebar { height: 52px; padding: 0 100px; justify-content: center; background: #eff4fa66; border-bottom: 1px solid #ffffff73; backdrop-filter: blur(28px) saturate(130%); }
+body.mac .titlebar span { opacity: 1; color: var(--muted); font-size: 12px; font-weight: 550; letter-spacing: .2px; }
+body.mac .sidebar { top: 64px; padding-top: 22px; border-radius: 20px; }
+body.mac .brand { margin-bottom: 26px; }
+body.mac main { margin-top: 52px; height: calc(100vh - 52px); padding-top: 24px; }
+html[data-theme="dark"] body.mac .titlebar { background: #25324566; border-bottom-color: #ffffff16; }
+@media (prefers-reduced-transparency: reduce) {
+  body.mac .titlebar { background: #eef2f8; backdrop-filter: none; }
+  html[data-theme="dark"] body.mac .titlebar { background: #202d3e; }
+}

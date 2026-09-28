@@ -1,0 +1,20 @@
+const fs = require("node:fs");
+const path = require("node:path");
+const { Resvg } = require("@resvg/resvg-js");
+const assets = path.join(__dirname, "../assets");
+const svg = fs.readFileSync(path.join(assets, "icon.svg"));
+const sizes = [16, 20, 24, 32, 40, 48, 64, 128, 256];
+const frames = sizes.map(value => new Resvg(svg, { fitTo: { mode: "width", value } }).render().asPng());
+const header = Buffer.alloc(6 + frames.length * 16);
+header.writeUInt16LE(1, 2); header.writeUInt16LE(frames.length, 4);
+let offset = header.length;
+frames.forEach((frame, i) => {
+  const entry = 6 + i * 16;
+  header[entry] = sizes[i] % 256; header[entry + 1] = sizes[i] % 256;
+  header.writeUInt16LE(1, entry + 4); header.writeUInt16LE(32, entry + 6);
+  header.writeUInt32LE(frame.length, entry + 8); header.writeUInt32LE(offset, entry + 12);
+  offset += frame.length;
+});
+fs.writeFileSync(path.join(assets, "icon.ico"), Buffer.concat([header, ...frames]));
+fs.writeFileSync(path.join(assets, "icon.png"), new Resvg(svg, { fitTo: { mode: "width", value: 512 } }).render().asPng());
+console.log("Toolbox icon generated at 9 sizes");

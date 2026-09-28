@@ -1,0 +1,2 @@
+const base = require('./package.json').build;
+module.exports = { ...base, directories: { output: 'release-mac' }, mac: { target: ['zip'], category: 'public.app-category.utilities', icon: 'assets/icon.png', sign: require('./scripts/sign-mac.cjs'), hardenedRuntime: true, entitlements: 'assets/entitlements.mac.plist', entitlementsInherit: 'assets/entitlements.mac.plist', minimumSystemVersion: '12.0', notarize: false, artifactName: '${name}-${version}-mac-${arch}.${ext}' } };

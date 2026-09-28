@@ -1,0 +1,55 @@
+{
+  "name": "app-update-monitor",
+  "version": "1.1.2",
+  "description": "监测并更新 winget 可识别的本机应用",
+  "main": "main.js",
+  "author": "Local Desktop",
+  "license": "UNLICENSED",
+  "scripts": {
+    "start": "electron .",
+    "start:mock": "electron . --mock-winget",
+    "test": "node --test",
+    "test:coverage": "node --test --experimental-test-coverage",
+    "build": "electron-builder --win portable",
+    "build:mac": "electron-builder --config build.mac.cjs --mac --arm64 --publish never"
+  },
+  "devDependencies": {
+    "@resvg/resvg-js": "^2.6.2",
+    "electron": "39.2.7",
+    "electron-builder": "26.0.12"
+  },
+  "build": {
+    "appId": "com.local.app-update-monitor",
+    "productName": "App 更新监测器",
+    "asar": true,
+    "compression": "maximum",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "src/**/*",
+      "renderer/**/*",
+      "assets/**/*",
+      "!src/winget/fake-client.js"
+    ],
+    "win": {
+      "icon": "assets/icon.ico",
+      "signAndEditExecutable": true,
+      "target": [
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "artifactName": "App更新监测器.exe"
+    }
+  },
+  "dependencies": {
+    "fast-xml-parser": "5.11.1",
+    "yauzl": "3.2.0"
+  }
+}

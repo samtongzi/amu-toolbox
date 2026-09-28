@@ -1,0 +1,77 @@
+{
+  "name": "amu-toolbox",
+  "version": "1.0.0",
+  "description": "阿木工具箱，让好用的工具触手可及",
+  "main": "main.js",
+  "author": "阿木",
+  "license": "UNLICENSED",
+  "scripts": {
+    "start": "electron .",
+    "test": "node --test",
+    "prepare:packages": "node scripts/prepare-packages.cjs",
+    "build": "electron-builder --win nsis portable",
+    "build:mac": "electron-builder --config build.mac.cjs --mac --arm64 --publish never"
+  },
+  "devDependencies": {
+    "@resvg/resvg-js": "^2.6.2",
+    "electron": "39.2.7",
+    "electron-builder": "26.0.12"
+  },
+  "build": {
+    "appId": "cn.amu.toolbox",
+    "productName": "阿木工具箱",
+    "asar": true,
+    "compression": "normal",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "src/**/*",
+      "renderer/**/*",
+      "assets/**/*",
+      "catalog.json"
+    ],
+    "extraResources": [
+      {
+        "from": "packages",
+        "to": "packages",
+        "filter": [
+          "*.exe"
+        ]
+      }
+    ],
+    "win": {
+      "icon": "assets/icon.ico",
+      "signAndEditExecutable": true,
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowElevation": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "shortcutName": "阿木工具箱",
+      "artifactName": "阿木工具箱-安装版-${version}.exe",
+      "deleteAppDataOnUninstall": false
+    },
+    "portable": {
+      "artifactName": "阿木工具箱-便携版-${version}.exe"
+    }
+  }
+}

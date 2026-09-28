@@ -1,0 +1,46 @@
+{
+  "name": "codex-reset-notifier",
+  "version": "1.0.6",
+  "description": "监控 divin.cc 的 Codex 额度重置记录并发送 Windows 通知",
+  "main": "main.js",
+  "author": "Local Desktop",
+  "license": "UNLICENSED",
+  "scripts": {
+    "start": "electron .",
+    "test": "node --test",
+    "build": "electron-builder --win portable",
+    "build:mac": "electron-builder --config build.mac.cjs --mac --arm64 --publish never"
+  },
+  "devDependencies": {
+    "electron": "39.2.7",
+    "electron-builder": "26.0.12"
+  },
+  "build": {
+    "appId": "com.local.codex-reset-notifier",
+    "productName": "Codex 额度重置通知",
+    "asar": true,
+    "compression": "maximum",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "main.js",
+      "src/**/*",
+      "renderer/**/*",
+      "assets/**/*"
+    ],
+    "win": {
+      "icon": "assets/icon.ico",
+      "signAndEditExecutable": true,
+      "target": [
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "artifactName": "Codex额度重置通知.exe"
+    }
+  }
+}

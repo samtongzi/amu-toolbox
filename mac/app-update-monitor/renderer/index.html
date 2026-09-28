@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>App 更新监测器</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="mac-theme.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="command-header">
+      <div class="brand-block">
+        <img class="brand-mark" src="../assets/icon.svg" alt="">
+        <div>
+          <h1>App 更新监测器</h1>
+          <p>轻松管理每一次应用更新</p>
+        </div>
+      </div>
+      <div class="system-readout" aria-label="系统状态">
+        <div class="readout-item">
+          <span class="readout-label">WINGET</span>
+          <span class="status-pill is-loading" id="wingetStatus">检测中</span>
+        </div>
+        <div class="readout-item">
+          <span class="readout-label">上次扫描</span>
+          <time id="lastScanTime">--</time>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="workspace" aria-labelledby="updatesTitle">
+        <div class="section-toolbar">
+          <div class="title-cluster">
+            <h2 id="updatesTitle">可用更新</h2>
+            <span class="count-badge" id="packageCount">--</span>
+            <span class="muted" id="selectionSummary">未选择</span>
+          </div>
+          <div class="action-cluster" aria-label="更新操作">
+            <button class="button button-secondary" id="refreshButton" type="button">刷新</button>
+            <button class="button button-primary" id="updateSelectedButton" type="button" disabled>更新选中项</button>
+            <button class="button button-secondary" id="updateAllButton" type="button" disabled>更新全部</button>
+            <button class="button button-danger" id="cancelButton" type="button" hidden>取消</button>
+          </div>
+        </div>
+
+        <div class="notice is-loading" id="stateNotice" role="status" aria-live="polite">
+          <span class="notice-indicator" aria-hidden="true"></span>
+          <div>
+            <strong id="noticeTitle">正在加载应用状态</strong>
+            <span id="noticeDetail">正在连接本机维护服务…</span>
+          </div>
+          <button class="text-button" id="noticeRetryButton" type="button" hidden>重试</button>
+        </div>
+
+        <div class="execution-track" id="executionTrack" hidden aria-live="polite">
+          <div class="track-copy">
+            <div>
+              <span class="track-kicker" id="trackLabel">更新队列</span>
+              <strong id="trackCurrent">正在准备…</strong>
+            </div>
+            <span class="track-count" id="trackCount">0 / 0</span>
+          </div>
+          <div class="progress-rail" role="progressbar" id="progressRail" aria-valuemin="0" aria-valuemax="0" aria-valuenow="0">
+            <span id="progressBar"></span>
+          </div>
+          <div class="track-actions">
+            <span id="trackSummary">等待任务开始</span>
+            <button class="text-button" id="retryFailedButton" type="button" hidden>重试失败项</button>
+          </div>
+        </div>
+
+        <div class="table-frame">
+          <table>
+            <thead>
+              <tr>
+                <th class="selection-column">
+                  <label class="checkbox-wrap" title="全选">
+                    <input id="selectAllCheckbox" type="checkbox" aria-label="选择全部应用">
+                    <span aria-hidden="true"></span>
+                  </label>
+                </th>
+                <th>应用</th>
+                <th>当前版本</th>
+                <th>可用版本</th>
+                <th>来源</th>
+                <th>状态</th>
+                <th class="operation-column">操作</th>
+              </tr>
+            </thead>
+            <tbody id="packageTableBody"></tbody>
+          </table>
+          <div class="table-placeholder" id="tablePlaceholder">
+            <span class="placeholder-glyph" aria-hidden="true">···</span>
+            <strong id="placeholderTitle">正在读取更新列表</strong>
+            <span id="placeholderDetail">首次扫描可能需要一些时间。</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="lower-deck">
+        <div class="log-panel" aria-labelledby="logsTitle">
+          <div class="panel-heading">
+            <div class="title-cluster">
+              <h2 id="logsTitle">运行日志</h2>
+              <span class="count-badge" id="logCount">0</span>
+            </div>
+            <button class="text-button" id="clearLogsButton" type="button">清空</button>
+          </div>
+          <div class="log-list" id="logList" tabindex="0" aria-label="运行日志列表"></div>
+        </div>
+
+        <aside class="settings-panel" aria-labelledby="settingsTitle">
+          <div class="panel-heading">
+            <h2 id="settingsTitle">维护设置</h2>
+            <span class="save-state" id="settingsSaveState" aria-live="polite"></span>
+          </div>
+          <form id="settingsForm">
+            <label class="field-row appearance-control" for="appearance"><span><strong>外观</strong><small id="appearanceStatus" role="status" aria-live="polite">选择后自动保存</small></span><select class="setting-select" id="appearance"><option value="light">浅色</option><option value="dark">深色</option><option value="system" selected>跟随系统</option></select></label>
+            <label class="field-row" for="scanInterval">
+              <span>
+                <strong>扫描间隔</strong>
+                <small>15–1440 分钟</small>
+              </span>
+              <span class="number-input">
+                <input id="scanInterval" name="scanIntervalMinutes" type="number" min="15" max="1440" step="15" required>
+                <span>分钟</span>
+              </span>
+            </label>
+            <label class="field-row" for="maxConcurrentUpdates">
+              <span>
+                <strong>同时更新</strong>
+                <small>最多同时处理的软件数量</small>
+              </span>
+              <select class="setting-select" id="maxConcurrentUpdates" name="maxConcurrentUpdates" aria-label="同时更新数量">
+                <option value="1">1 款</option>
+                <option value="2">2 款</option>
+                <option value="3">3 款</option>
+                <option value="4">4 款</option>
+                <option value="5">5 款</option>
+              </select>
+            </label>
+            <label class="field-row switch-row" for="notificationsEnabled">
+              <span>
+                <strong>发现更新时通知</strong>
+                <small>仅通知新出现的更新</small>
+              </span>
+              <input class="switch" id="notificationsEnabled" name="notificationsEnabled" type="checkbox">
+            </label>
+            <label class="field-row switch-row" for="openAtLogin">
+              <span>
+                <strong>开机启动</strong>
+                <small>登录电脑后在后台运行</small>
+              </span>
+              <input class="switch" id="openAtLogin" name="openAtLogin" type="checkbox">
+            </label>
+            <button class="button button-primary settings-submit" id="saveSettingsButton" type="submit">保存设置</button>
+          </form>
+          <div class="ignored-section" aria-labelledby="ignoredTitle">
+            <div class="ignored-heading">
+              <strong id="ignoredTitle">已忽略更新</strong>
+              <span class="muted" id="ignoredCount">0</span>
+            </div>
+            <div class="ignored-list" id="ignoredList">
+              <span class="ignored-empty">暂无忽略的软件</span>
+            </div>
+          </div>
+        </aside>
+      </section>
+    </main>
+  </div>
+
+  <div class="toast" id="toast" role="alert" aria-live="assertive" hidden></div>
+  <script src="appearance.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

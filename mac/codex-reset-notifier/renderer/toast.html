@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; connect-src 'none'">
+  <title>Codex 额度通知</title>
+  <link rel="stylesheet" href="toast.css">
+</head>
+<body>
+  <article class="toast" aria-label="Codex 额度通知">
+    <header>
+      <img class="app-icon" src="../assets/icon.svg" alt="">
+      <span class="app-name">Codex 额度通知</span>
+      <span class="time">刚刚</span>
+      <button class="close" id="close" aria-label="关闭通知" title="关闭通知">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4 4 8 8M12 4l-8 8"/></svg>
+      </button>
+    </header>
+    <button class="content" id="content" aria-label="查看通知来源">
+      <h1 id="title">Codex 额度已重置</h1>
+      <p id="body"></p>
+    </button>
+    <footer>
+      <span class="source" id="hint">额度动态</span>
+      <button class="open" id="open">查看详情 <span aria-hidden="true">↗</span></button>
+    </footer>
+  </article>
+  <script src="toast.js"></script>
+</body>
+</html>

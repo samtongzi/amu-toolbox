@@ -1,0 +1,55 @@
+{
+  "version": 1,
+  "platform": "darwin",
+  "arch": "arm64",
+  "apps": [
+    {
+      "id": "app-update-monitor",
+      "file": "app-update-monitor-1.1.2-mac-arm64.zip",
+      "name": "App 更新监测器",
+      "category": "系统维护",
+      "icon": "update.svg",
+      "startupName": "AppUpdateMonitor",
+      "tagline": "让应用更新，变得简单。",
+      "description": "集中检查应用更新，选择多款应用即可批量下载与安装。",
+      "features": [
+        "检查应用官网与 App Store 更新",
+        "多选应用，批量下载与安装",
+        "更新前校验，完成后复查版本",
+        "菜单栏后台运行与原生应用图标"
+      ],
+      "requirements": "macOS 12 或更新版本 · Apple Silicon。支持官网和 App Store 更新检测。可自动安装兼容的官网更新；商店应用通过 App Store 完成。",
+      "usage": "在菜单栏选择“显示主界面”，勾选应用后批量更新。请先退出待更新应用；商店应用使用对应入口。检查失败的应用静默跳过。",
+      "version": "1.1.2",
+      "size": 106236025,
+      "sha256": "faaaf294153f25dac41853104455be0473ae90f3dcea4eb876e01d98c167dcee",
+      "bundleName": "App 更新监测器.app",
+      "bundleExecutable": "App 更新监测器",
+      "bundleId": "com.local.app-update-monitor"
+    },
+    {
+      "id": "codex-reset-notifier",
+      "file": "codex-reset-notifier-1.0.6-mac-arm64.zip",
+      "name": "Codex 额度重置通知",
+      "category": "效率提醒",
+      "icon": "reset.svg",
+      "startupName": "CodexResetNotifier",
+      "tagline": "额度重置，及时知道。",
+      "description": "后台关注额度重置动态，通过系统通知及时提醒。",
+      "features": [
+        "每 5 分钟检查 divin.cc 的公开重置记录",
+        "新事件去重提醒",
+        "macOS 通知中心原生提醒",
+        "顶部菜单栏操作与登录启动"
+      ],
+      "requirements": "macOS 12 或更新版本 · Apple Silicon。监控公开记录需要联网；这不是个人账户剩余额度查询。",
+      "usage": "启动后在屏幕顶部菜单栏查看监控状态。请在系统通知设置中允许提醒；登录启动默认关闭。",
+      "version": "1.0.6",
+      "size": 105734255,
+      "sha256": "26e60ee85a2b5ab94ef161cb2170a8a3d7c18c39787007c1b1c8cffdb61e4248",
+      "bundleName": "Codex 额度重置通知.app",
+      "bundleExecutable": "Codex 额度重置通知",
+      "bundleId": "com.local.codex-reset-notifier"
+    }
+  ]
+}
