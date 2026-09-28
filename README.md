@@ -15,7 +15,7 @@ Mac 版支持 macOS 12 及更新版本的 Apple Silicon Mac。Windows 版更新�
 ## 源码目录
 
 - `mac/`：Mac 工具箱、两个子工具及统一构建脚本。运行 `cd mac && bash build-mac.command`；环境要求见 [Mac 构建说明](mac/先看这里.md)。
-- `windows/amu-toolbox/`：Windows x64 工具箱 1.0.0 源码。构建前把本版 Release 的 `App更新监测器.exe` 和 `Codex额度重置通知.exe` 放入该目录的 `packages/`；再运行 `npm ci && npm test && npm run build`。
+- `windows/amu-toolbox/`：Windows x64 工具箱 1.0.0 源码。构建前把 Release 的 `app-update-monitor-1.0.4-win-x64-portable.exe` 和 `codex-reset-notifier-1.0.2-win-x64-portable.exe` 下载到该目录的 `packages/`，分别重命名为 `App更新监测器.exe` 和 `Codex额度重置通知.exe`；再运行 `npm ci && npm test && npm run build`。
 - `windows/app-update-monitor/`：所提供的 Windows x64 更新监测器 1.0.4 源码。在 Windows 上运行 `npm ci && npm test && npm run build`。
 
 Mac 工具箱安装包包含两个子工具，也提供各子工具的独立 ZIP。Mac 产物使用本机 ad-hoc 签名，没有 Apple Developer ID 签名或公证；首次打开时可能受到 macOS 安全机制限制。

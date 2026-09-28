@@ -25,7 +25,7 @@ npm start
 npm run build
 ```
 
-从本仓库重建当前版本前，请先从 [Releases](https://github.com/samtongzi/amu-toolbox/releases) 下载 `App更新监测器.exe` 和 `Codex额度重置通知.exe`，放入本目录的 `packages` 文件夹。`catalog.json` 记录了它们的大小和 SHA-256。若手头有两个子工具的原始项目，也可运行 `npm run prepare:packages` 从相邻项目的 `release` 目录重新生成包和目录；更新子工具时须核对源项目的 package.json 版本与发布 EXE 一致。
+从本仓库重建当前版本前，请先从 [Releases](https://github.com/samtongzi/amu-toolbox/releases) 下载 `app-update-monitor-1.0.4-win-x64-portable.exe` 和 `codex-reset-notifier-1.0.2-win-x64-portable.exe`，放入本目录的 `packages` 文件夹，分别重命名为 `App更新监测器.exe` 和 `Codex额度重置通知.exe`。`catalog.json` 记录了它们的大小和 SHA-256。若手头有两个子工具的原始项目，也可运行 `npm run prepare:packages` 从相邻项目的 `release` 目录重新生成包和目录；更新子工具时须核对源项目的 package.json 版本与发布 EXE 一致。
 
 输出位于 release，包含当前用户安装版和便携版。每次安装/导出校验完整包，不执行远程脚本。界面运行于隔离、沙箱化的 Electron 渲染进程，所有文件操作由主进程按固定工具目录处理。
 
